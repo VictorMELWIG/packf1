@@ -18,8 +18,22 @@ function trierParPoints(liste) {
 //      rang (1, 2, 3...) | nom | écurie (chaîne vide si absente) | points | victoires
 //    Chaque <tr> porte l'attribut data-nom. Un nouvel appel REMPLACE le contenu.
 function remplirTableau(idCorps, liste) {
-  // À COMPLÉTER
+  const corps = document.getElementById(idCorps);
+  corps.innerHTML = "";
+  liste.forEach((entree, i) => {
+    const tr = document.createElement("tr");
+    tr.dataset.nom = entree.nom;
+    const valeurs = [i + 1, entree.nom, entree.ecurie ?? "", entree.points, entree.victoires];
+    for (const v of valeurs) {
+      const td = document.createElement("td");
+      td.textContent = v;
+      tr.appendChild(td);
+    }
+    corps.appendChild(tr);
+  });
 }
+  
+
 
 // 3. marquerPodium(idCorps) : ajoute la classe CSS "podium" aux TROIS PREMIÈRES
 //    lignes du tableau, et la retire de toutes les autres.
