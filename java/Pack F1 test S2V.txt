@@ -1,0 +1,22 @@
+Pack F1 test S2V
+
+java
+
+
+1.
+j'ai utilisé le tableau BAREME qui etait deja donne si le pilote a abandonné ou qu'il est apres la 10e place ca renvoie 0 sinon je prends la case position -1 du tableau parce qu'en java un tableau commence à 0 du coup la 1re place c'est BAREME[0]=25
+
+
+2.
+en gros j'ai fait une regle de tri ordre qui classe d'abord par points et si egalité par victoires puis par 2e places et en dernier par ordre alphabétique comme dans le reglement apres je passe sur toutes les courses et je range chaque pilote dans un dictionnaire a chaque course je lui ajoute ses points avec la fonction de l'etape 1 et je compte ses victoires et ses 2e places a la fin je mets tout dans une liste et je trie.
+
+
+3.
+meme principe que l'etape 2 je range chaque ecurie dans un dictionnaire et pour chaque pilote j'ajoute ses points ses victoires et ses 2e places a son écurie pour une ecurie le champ ecurie reste vide vu que c'est deja elle a la fin je mets tout dans une liste et je trie avec la meme regle ordre que l'etape 2
+
+
+4.
+je passe sur toutes les courses et je garde que celles du pilote demandé ou il a pas abandonné j'additionne ses positions et je compte combien de courses il a fini si il en a fini aucune ça renvoie 0 sinon je fais la somme divisée par le nombre de courses et j'arrondis a 2 chiffres apres la virgule avec Math.round je multiplie par 100 j'arrondis et je redivise par 100
+
+5.
+pas de code a ecrire c'est le test de la saison complete avec le vrai fichier courses_propres.csv il est passé direct une fois les 4 methodes finies
