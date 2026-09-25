@@ -7,6 +7,10 @@
        java -Dstdout.encoding=UTF-8 -cp out Main      (la production)
    ========================================================================= */
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.List;
 
 public class Classement {
@@ -14,14 +18,19 @@ public class Classement {
     /** Barème officiel des dix premiers. FOURNI — NE PAS MODIFIER. */
     public static final int[] BAREME = {25, 18, 15, 12, 10, 8, 6, 4, 2, 1};
 
+    private static final Comparator<Resultat> ORDRE =
+            Comparator.comparingInt((Resultat r) -> r.points).reversed()
+                    .thenComparing(Comparator.comparingInt((Resultat r) -> r.victoires).reversed())
+                    .thenComparing(Comparator.comparingInt((Resultat r) -> r.deuxiemes).reversed())
+                    .thenComparing(r -> r.nom);
+
     // 1. pointsPourPosition(position) : points marqués pour cette position.
     //    1 -> 25, 2 -> 18, ..., 10 -> 1. Au-delà de la 10e place : 0.
     //    Un abandon vaut la position 0, donc 0 point.
-        public static int pointsPourPosition(int position) {
+    public static int pointsPourPosition(int position) {
         if (position < 1 || position > BAREME.length) {
             return 0;
         }
-        //abanddon ou plsu de 10e pas de point
         return BAREME[position - 1];
     }
 
@@ -29,8 +38,24 @@ public class Classement {
     //    ses victoires (position 1) et ses 2e places, trié par :
     //    points décroissants, puis victoires, puis 2e places, puis nom (A→Z).
     public static List<Resultat> classementPilotes(List<Ligne> lignes) {
-        // À COMPLÉTER
-        return null;
+        Map<String, Resultat> parPilote = new LinkedHashMap<>();
+        for (Ligne l : lignes) {
+            Resultat r = parPilote.get(l.pilote());
+            if (r == null) {
+                r = new Resultat(l.pilote(), l.ecurie());
+                parPilote.put(l.pilote(), r);
+            }
+            r.points += pointsPourPosition(l.position());
+            if (l.position() == 1) {
+                r.victoires++;
+            }
+            if (l.position() == 2) {
+                r.deuxiemes++;
+            }
+        }
+        List<Resultat> classement = new ArrayList<>(parPilote.values());
+        classement.sort(ORDRE);
+        return classement;
     }
 
     // 3. classementEcuries(pilotes) : additionne les points, victoires et
