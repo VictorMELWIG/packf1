@@ -1,0 +1,21 @@
+Pack F1 test S2V
+
+py 
+
+1. 
+je l'ai complété la fonction qui convertit un chrno au format m:ss.mmm en secondes 
+je retire d'abord les espaces avec le strip et je renvoie none si la vhaine est vide
+je sépare les minutes et secondes avec split je calcule minutes *60 + les secondes et j'arrondis a 3 décimales avec round
+
+
+2.
+j'ouvre le fichier en utf8 pour les accents et sauter la premeiere ligne avec next c'est l'en tete
+pour chaque ligne je decoupe les colonnes avec split si le pilotes a abandonné je mets sa positions a 0 et sans temps avec none sinon je transforme la position en nombre entier et je convertis le temsp en secondes avec la fonction de l'etape 1 pour finir je range chaque ligne dans un dictionnaire et renvoie la lsite complete
+
+
+3.
+je devais ecrire le fichier propre pour la partie java j'ouvre le fichier en
+ecriture ce qui remplace l'ancien contenu s'il y en avait j'ecris d'abord la ligne
+d'en-tete demandée par le contrat puis une ligne par pilote avec les colonnes
+separées par des ; pour le temps si le pilote n'en a pas je laisse la case vide
+sinon je l'ecris avec 3 chiffres apres la virgule
