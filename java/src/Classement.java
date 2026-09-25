@@ -77,11 +77,21 @@ public class Classement {
         return classement;
     }
 
-    // 4. positionMoyenne(lignes, pilote) : moyenne des positions de ce pilote,
+        // 4. positionMoyenne(lignes, pilote) : moyenne des positions de ce pilote,
     //    ABANDONS EXCLUS, arrondie à 2 décimales. 0 s'il n'a jamais terminé.
     //    Ex. positions 1, 2 et un abandon -> 1.5
     public static double positionMoyenne(List<Ligne> lignes, String pilote) {
-        // À COMPLÉTER
-        return 0;
+        int somme = 0;
+        int nb = 0;
+        for (Ligne l : lignes) {
+            if (l.pilote().equals(pilote) && l.position() > 0) {
+                somme += l.position();
+                nb++;
+            }
+        }
+        if (nb == 0) {
+            return 0;
+        }
+        return Math.round((double) somme / nb * 100) / 100.0;
     }
 }
