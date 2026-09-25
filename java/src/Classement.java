@@ -58,11 +58,23 @@ public class Classement {
         return classement;
     }
 
-    // 3. classementEcuries(pilotes) : additionne les points, victoires et
+        // 3. classementEcuries(pilotes) : additionne les points, victoires et
     //    2e places des pilotes de chaque écurie. Même ordre de tri.
     public static List<Resultat> classementEcuries(List<Resultat> pilotes) {
-        // À COMPLÉTER
-        return null;
+        Map<String, Resultat> parEcurie = new LinkedHashMap<>();
+        for (Resultat p : pilotes) {
+            Resultat e = parEcurie.get(p.ecurie);
+            if (e == null) {
+                e = new Resultat(p.ecurie, "");
+                parEcurie.put(p.ecurie, e);
+            }
+            e.points += p.points;
+            e.victoires += p.victoires;
+            e.deuxiemes += p.deuxiemes;
+        }
+        List<Resultat> classement = new ArrayList<>(parEcurie.values());
+        classement.sort(ORDRE);
+        return classement;
     }
 
     // 4. positionMoyenne(lignes, pilote) : moyenne des positions de ce pilote,
