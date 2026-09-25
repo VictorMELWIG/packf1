@@ -38,7 +38,10 @@ function remplirTableau(idCorps, liste) {
 // 3. marquerPodium(idCorps) : ajoute la classe CSS "podium" aux TROIS PREMIÈRES
 //    lignes du tableau, et la retire de toutes les autres.
 function marquerPodium(idCorps) {
-  // À COMPLÉTER
+  const lignes = document.querySelectorAll(`#${idCorps} tr`);
+  lignes.forEach((tr, i) => {
+    tr.classList.toggle("podium", i < 3);
+  });
 }
 
 /* --- FOURNI — NE PAS MODIFIER : affichage de la saison ------------------- */

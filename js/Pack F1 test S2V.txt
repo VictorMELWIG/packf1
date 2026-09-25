@@ -1,0 +1,13 @@
+Pack F1 test S2V
+
+
+js
+
+1.
+je fais une copie de la liste pour pas modifier celle d'origine avec ...liste je trie la copie avec sort en faisant b.points-a.points pour avoir du plus grand au plus petit et si c'est egal le || passe a la suite et je compare les victoires pareil
+
+2.
+je recupere le tbody avec son id et je le vide avec innerHTML="" pour remplacer l'ancien contenu ensuite pour chaque entree de la liste je cree une ligne tr avec l'attribut data-nom et je mets 5 cellules td dedans le rang (i+1 parce que i commence a 0) le nom l'ecurie les points et les victoires pour l'ecurie j'ai mis ?? "" pour mettre une case vide quand y'en a pas dans le classement des ecuries cette fonction a validé les tests 2 3 et 5 d'un coup parce que le 5 utilise juste le tri et le tableau
+
+3.
+je recupere toutes les lignes tr du tableau et avec toggle j'ajoute la classe podium si la ligne est dans les 3 premieres (i plus petit que 3) sinon je la retire comme ça si le classement change le podium suit
